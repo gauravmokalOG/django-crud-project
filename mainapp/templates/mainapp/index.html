@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory Manager</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Inventory Manager</h1>
+    <a href="{% url 'create_item' %}" class="btn btn-primary mb-3">Add New Item</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td><a href="{% url 'item_detail' item.pk %}">{{ item.name }}</a></td>
+                <td>{{ item.quantity }}</td>
+                <td>
+                    <a href="{% url 'update_item' item.pk %}" class="btn btn-sm btn-info">Edit</a>
+                    <a href="{% url 'delete_item' item.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
